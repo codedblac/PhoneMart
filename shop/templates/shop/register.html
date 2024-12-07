@@ -1,0 +1,88 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2>Register</h2>
+        <form method="post" id="registerForm" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required 
+                    minlength="3" maxlength="150">
+                <div class="invalid-feedback">Username must be 3-150 characters long</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="invalid-feedback">Please enter a valid email address</div>
+            </div>
+            <div class="mb-3">
+                <label for="password1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password1" name="password1" required 
+                    minlength="8">
+                <div class="invalid-feedback">Password must be at least 8 characters long</div>
+            </div>
+            <div class="mb-3">
+                <label for="password2" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+                <div class="invalid-feedback">Passwords do not match</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <p class="mt-3">
+            Already have an account? <a href="{% url 'login' %}">Login here</a>
+        </p>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registerForm');
+    const inputs = form.querySelectorAll('input');
+    
+    const validateInput = (input) => {
+        let isValid = true;
+        input.classList.remove('is-valid', 'is-invalid');
+
+        if (input.validity.valueMissing) {
+            isValid = false;
+        } else if (input.type === 'email' && !input.validity.valid) {
+            isValid = false;
+        } else if (input.minLength && input.value.length < input.minLength) {
+            isValid = false;
+        }
+
+        if (input.id === 'password2') {
+            const password1 = document.getElementById('password1');
+            if (input.value !== password1.value) {
+                isValid = false;
+            }
+        }
+
+        input.classList.add(isValid ? 'is-valid' : 'is-invalid');
+        return isValid;
+    };
+
+    inputs.forEach(input => {
+        input.addEventListener('input', () => validateInput(input));
+        input.addEventListener('blur', () => validateInput(input));
+    });
+
+    form.addEventListener('submit', function(e) {
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!validateInput(input)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,1 @@
+# create an admin account using `python manage.py createsuperuser`
