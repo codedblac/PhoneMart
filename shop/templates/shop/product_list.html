@@ -32,7 +32,7 @@
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text text-muted">${{ product.price }}</p>
+                            <p class="card-text text-muted">Kes{{ product.price }}</p>
                             <p class="card-text small">{{ product.description|truncatewords:20 }}</p>
                             <form method="post" action="{% url 'add_to_cart' product.id %}" class="d-flex gap-2">
                                 {% csrf_token %}

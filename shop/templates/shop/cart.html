@@ -20,9 +20,9 @@
                 {% for item in cart_items %}
                 <tr>
                     <td>{{ item.product.name }}</td>
-                    <td>${{ item.product.price }}</td>
+                    <td>Kes{{ item.product.price }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td>${{ item.get_total }}</td>
+                    <td>Kes{{ item.get_total }}</td>
                     <td>
                         <form method="post" action="{% url 'delete_from_cart' item.id %}">
                             {% csrf_token %}
@@ -35,7 +35,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3" class="text-end"><strong>Total:</strong></td>
-                    <td><strong>${{ total }}</strong></td>
+                    <td><strong>Kes{{ total }}</strong></td>
                     <td></td>
                 </tr>
             </tfoot>
