@@ -6,6 +6,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ["name", "created_at"]
     search_fields = ["name", "description"]
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ["name", "category", "price", "created_at"]
