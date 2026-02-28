@@ -15,6 +15,7 @@ access_token = response.json().get('access_token')
 
 
 # STK Push Parameters
+
 business_shortcode = "174379"
 passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
 timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
