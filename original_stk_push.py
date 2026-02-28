@@ -4,7 +4,6 @@ import datetime
 
 import requests
 
-
 from requests.auth import HTTPBasicAuth
 
 consumer_key = 'r3UfevFwKSjvBdotAqRRqNJtLFhQLjL3GwOb9PMD1nPb6rls'
